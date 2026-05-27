@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Harry Kane Shooting Profile</title>
+    <style>
+      :root {
+        --red: #c4050e;
+        --ink: #171717;
+        --muted: #666666;
+        --line: #d9d9d9;
+        --paper: #ffffff;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: #101214;
+        font-family: "Google Sans", Arial, Helvetica, sans-serif;
+        color: var(--ink);
+      }
+
+      .slide {
+        width: 1600px;
+        height: 900px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        background: var(--paper);
+      }
+
+      .side {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 510px;
+        background:
+          linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.66)),
+          url("../../../../outputs/019e62d0-e31b-7d71-928b-77e39b5d5baa/presentations/bundesliga-template-pack/assets/stadium-right-bw.png");
+        background-size: cover;
+        background-position: center;
+        color: white;
+      }
+
+      .side::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -95px;
+        width: 190px;
+        height: 100%;
+        background: white;
+        transform: skewX(-13deg);
+      }
+
+      .crest {
+        position: absolute;
+        left: 58px;
+        top: 46px;
+        width: 76px;
+        height: 76px;
+        background: white;
+        padding: 10px;
+      }
+
+      .player-name {
+        position: absolute;
+        left: 58px;
+        top: 232px;
+        width: 330px;
+        font-size: 47px;
+        line-height: .98;
+        font-weight: 900;
+      }
+
+      .profile-kicker {
+        position: absolute;
+        left: 61px;
+        top: 342px;
+        font-size: 25px;
+        font-weight: 900;
+        color: var(--red);
+      }
+
+      .side-red {
+        position: absolute;
+        left: 62px;
+        top: 400px;
+        width: 66px;
+        height: 5px;
+        background: var(--red);
+      }
+
+      .side-copy {
+        position: absolute;
+        left: 62px;
+        top: 440px;
+        width: 285px;
+        font-size: 18px;
+        line-height: 1.38;
+      }
+
+      .main-title {
+        position: absolute;
+        left: 555px;
+        top: 55px;
+        font-size: 42px;
+        line-height: 1.04;
+        font-weight: 900;
+      }
+
+      .main-sub {
+        position: absolute;
+        left: 555px;
+        top: 118px;
+        width: 735px;
+        font-size: 17px;
+        color: var(--muted);
+        line-height: 1.32;
+      }
+
+      .stats {
+        position: absolute;
+        left: 555px;
+        top: 205px;
+        display: grid;
+        grid-template-columns: repeat(4, 190px);
+        gap: 20px;
+      }
+
+      .stat {
+        height: 103px;
+        background: #f1f1f1;
+        padding: 16px 18px;
+      }
+
+      .stat.hot {
+        background: var(--red);
+        color: white;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 38px;
+        line-height: 1;
+        font-weight: 900;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 12px;
+        font-size: 12px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .section-title {
+        position: absolute;
+        font-size: 25px;
+        font-weight: 900;
+      }
+
+      .shot-title { left: 555px; top: 378px; }
+      .read-title { left: 1110px; top: 378px; }
+
+      .shot-map {
+        position: absolute;
+        left: 555px;
+        top: 430px;
+        width: 505px;
+        height: 260px;
+        background: #f3f3f3;
+        border: 1px solid #d6d6d6;
+      }
+
+      .profile-chart {
+        position: absolute;
+        left: 1110px;
+        top: 430px;
+        width: 355px;
+      }
+
+      .profile-row {
+        display: grid;
+        grid-template-columns: 128px 1fr 42px;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 17px;
+      }
+
+      .profile-label {
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 1.1;
+      }
+
+      .track {
+        height: 11px;
+        background: #e6e6e6;
+      }
+
+      .fill {
+        height: 100%;
+        background: var(--ink);
+      }
+
+      .fill.red { background: var(--red); }
+
+      .profile-value {
+        font-size: 17px;
+        font-weight: 900;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .phase-strip {
+        position: absolute;
+        left: 555px;
+        top: 712px;
+        width: 905px;
+        height: 72px;
+      }
+
+      .phase-title {
+        position: absolute;
+        left: 0;
+        top: -28px;
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .phase-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+      }
+
+      .phase-cell {
+        height: 72px;
+        background: #f3f3f3;
+        border-left: 4px solid #d9d9d9;
+        padding: 11px 12px;
+      }
+
+      .phase-cell.hot { border-left-color: var(--red); }
+
+      .phase-cell strong {
+        display: block;
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .phase-cell span {
+        display: block;
+        margin-top: 8px;
+        font-size: 10px;
+        color: var(--muted);
+        font-weight: 850;
+        text-transform: uppercase;
+      }
+
+      .note {
+        position: absolute;
+        left: 555px;
+        bottom: 52px;
+        width: 830px;
+        font-size: 16px;
+        line-height: 1.32;
+        font-weight: 850;
+      }
+
+      .bug {
+        position: absolute;
+        right: 76px;
+        bottom: 64px;
+        width: 68px;
+        height: 25px;
+        transform: skewX(-14deg);
+        background: var(--red);
+      }
+
+      .footer {
+        position: absolute;
+        left: 62px;
+        bottom: 60px;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      .footer::before {
+        content: "";
+        display: inline-block;
+        width: 42px;
+        height: 5px;
+        background: var(--red);
+        margin-right: 22px;
+        vertical-align: 2px;
+      }
+
+      svg text {
+        font-family: "Google Sans", Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="slide">
+      <aside class="side">
+        <img class="crest" src="../../../../logos/DFL-CLU-00000G_Bayern.svg" alt="Bayern crest" />
+        <div class="player-name">HARRY<br />KANE</div>
+        <div class="profile-kicker">SHOOTING PROFILE</div>
+        <div class="side-red"></div>
+        <div class="side-copy">Central striker | right-foot bias | six-shot sample across the five-match reference output.</div>
+        <div class="footer">BSQ PLAYER PROFILE.</div>
+      </aside>
+
+      <div class="main-title">Harry Kane Converts Above The Chance Value</div>
+      <div class="main-sub">
+        Kane’s sample is small, but the scoring return is clear: 3 goals from 0.69 xG. The profile asks whether that comes from shot selection, contact quality, or repeatable finishing behaviour.
+      </div>
+
+      <section class="stats">
+        <div class="stat hot"><strong>+2.3</strong><span>Goals minus xG</span></div>
+        <div class="stat"><strong>6</strong><span>Shots</span></div>
+        <div class="stat"><strong>0.12</strong><span>xG per shot</span></div>
+        <div class="stat"><strong>50%</strong><span>On target</span></div>
+      </section>
+
+      <div class="section-title shot-title">SHOT MAP</div>
+      <svg class="shot-map" viewBox="0 0 505 260" aria-label="Harry Kane shot map">
+        <rect x="0" y="0" width="505" height="260" fill="#f3f3f3"/>
+        <rect x="205" y="0" width="95" height="31" fill="#fff" stroke="#d6d6d6"/>
+        <line x1="0" y1="177" x2="505" y2="177" stroke="#d6d6d6" stroke-width="1.2"/>
+        <ellipse cx="252" cy="150" rx="126" ry="56" fill="none" stroke="#d0d0d0" stroke-width="1.2"/>
+        <text x="252" y="22" text-anchor="middle" font-size="11" font-weight="800" fill="#666">GOAL</text>
+        <g stroke="#ffffff" stroke-width="2">
+          <circle cx="130" cy="103" r="18" fill="#c4050e"/>
+          <circle cx="180" cy="138" r="16" fill="#c4050e"/>
+          <circle cx="300" cy="70" r="30" fill="#c4050e"/>
+          <circle cx="134" cy="198" r="13" fill="#171717"/>
+          <circle cx="170" cy="81" r="12" fill="#171717"/>
+          <circle cx="362" cy="109" r="11" fill="#8d8d8d"/>
+        </g>
+        <g font-size="10" font-weight="850" fill="#171717" text-anchor="middle">
+          <text x="130" y="133">0.12</text>
+          <text x="180" y="166">0.04</text>
+          <text x="300" y="111">0.34</text>
+          <text x="134" y="224">0.09</text>
+          <text x="170" y="63">0.07</text>
+          <text x="362" y="136">0.03</text>
+        </g>
+      </svg>
+
+      <div class="section-title read-title">BSQ PROFILE GRAPH</div>
+      <section class="profile-chart">
+        <div class="profile-row"><div class="profile-label">Approach / prep</div><div class="track"><div class="fill" style="width:81%"></div></div><div class="profile-value">81</div></div>
+        <div class="profile-row"><div class="profile-label">Strike quality</div><div class="track"><div class="fill red" style="width:70%"></div></div><div class="profile-value">70</div></div>
+        <div class="profile-row"><div class="profile-label">Technique mechanics</div><div class="track"><div class="fill" style="width:61%"></div></div><div class="profile-value">61</div></div>
+        <div class="profile-row"><div class="profile-label">Shot geometry</div><div class="track"><div class="fill" style="width:58%"></div></div><div class="profile-value">58</div></div>
+        <div class="profile-row"><div class="profile-label">Placement</div><div class="track"><div class="fill" style="width:49%"></div></div><div class="profile-value">49</div></div>
+        <div class="profile-row"><div class="profile-label">Finishing execution</div><div class="track"><div class="fill red" style="width:39%"></div></div><div class="profile-value">39</div></div>
+        <div class="profile-row"><div class="profile-label">Average BSQ</div><div class="track"><div class="fill" style="width:37%"></div></div><div class="profile-value">37</div></div>
+      </section>
+
+      <section class="phase-strip">
+        <div class="phase-title">PHASE PROFILE</div>
+        <div class="phase-grid">
+          <div class="phase-cell"><strong>68</strong><span>P1 context</span></div>
+          <div class="phase-cell hot"><strong>81</strong><span>P2 approach</span></div>
+          <div class="phase-cell"><strong>64</strong><span>P3 coil</span></div>
+          <div class="phase-cell"><strong>49</strong><span>P4 impact</span></div>
+          <div class="phase-cell"><strong>62</strong><span>P5 follow</span></div>
+          <div class="phase-cell"><strong>56</strong><span>P6 output</span></div>
+        </div>
+      </section>
+
+      <div class="note">
+        Inference: the notebook profile shows Kane’s scoring return is not driven by a uniformly high BSQ average. His strongest repeatable cue is the pre-strike setup and strike-quality layer, while impact/output phases are more mixed across the six-shot sample.
+      </div>
+      <div class="bug"></div>
+    </main>
+  </body>
+</html>

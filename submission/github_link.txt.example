@@ -1,0 +1,8 @@
+https://github.com/YOUR_ORG/YOUR_REPO
+
+# Private repo: invite GitHub user MoellerO
+#
+# This repo is SOURCE CODE ONLY. It does not contain hackathon match data.
+# Reproduce: clone → set HACKATHON_DATA_ROOT (outside repo) + AWS hackathon profile
+#            → ./scripts/reproduce.sh
+# See docs/DATA_POLICY.md and docs/REPRODUCTION.md in the repo.

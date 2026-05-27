@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shooting Metric Visualizer</title>
+    <link rel="stylesheet" href="/shooting.css" />
+  </head>
+  <body>
+    <main class="shooting-shell">
+      <aside class="shot-rail" aria-label="Shot queue">
+        <header class="rail-header">
+          <p class="eyebrow">Shooting1</p>
+          <h1>Metric Story Review</h1>
+        </header>
+        <div class="filter-row">
+          <input id="shotSearch" type="search" placeholder="event, player, match" />
+          <select id="familyFilter" aria-label="Family filter">
+            <option value="all">All</option>
+          </select>
+        </div>
+        <div id="summaryStats" class="summary-stats"></div>
+        <div id="shotList" class="shot-list"></div>
+      </aside>
+
+      <section class="stage" aria-label="3D shot review">
+        <div id="scene" class="scene"></div>
+        <div class="stage-topbar">
+          <div>
+            <p id="shotContext" class="eyebrow">Loading</p>
+            <h2 id="shotTitle">Select a shot</h2>
+          </div>
+          <div id="frameBadge" class="frame-badge">Frame -</div>
+        </div>
+        <div id="status" class="status-line">Loading shooting review outputs</div>
+        <div class="timeline-card">
+          <div class="timeline-controls">
+            <button id="prevFrameButton" type="button" title="Previous frame">‹</button>
+            <input id="frameSlider" type="range" min="0" max="1" value="0" />
+            <button id="nextFrameButton" type="button" title="Next frame">›</button>
+            <button id="broadcastViewButton" type="button">Broadcast View</button>
+            <button id="contactButton" type="button">Contact</button>
+            <button id="impactButton" type="button">Physics Exit</button>
+            <button id="biomechButton" type="button">Biomech</button>
+          </div>
+          <div id="candidateStrip" class="candidate-strip"></div>
+        </div>
+      </section>
+
+      <aside class="metric-panel" aria-label="Metric inspector">
+        <section class="panel-section">
+          <div class="section-title">
+            <h2>Output</h2>
+            <span id="selectedByBadge" class="badge">-</span>
+          </div>
+          <div id="scoreGrid" class="score-grid"></div>
+        </section>
+
+        <section class="panel-section">
+          <h2>Frame Logic</h2>
+          <div id="frameLogic" class="kv-list"></div>
+        </section>
+
+        <section class="panel-section">
+          <h2>Biomechanics Inputs</h2>
+          <div id="biomechInputs" class="kv-list"></div>
+        </section>
+
+        <section class="panel-section">
+          <h2>Physics Inputs</h2>
+          <div id="physicsInputs" class="kv-list"></div>
+        </section>
+
+        <section class="panel-section">
+          <h2>Router Context</h2>
+          <div id="routerContext" class="kv-list"></div>
+        </section>
+
+        <section class="panel-section">
+          <h2>Eye Test</h2>
+          <div class="manual-grid">
+            <label>
+              Contact
+              <select id="contactVerdict">
+                <option value="">Unset</option>
+                <option value="pass">Pass</option>
+                <option value="fail">Fail</option>
+                <option value="unsure">Unsure</option>
+              </select>
+            </label>
+            <label>
+              Family
+              <select id="familyVerdict">
+                <option value="">Unset</option>
+                <option value="pass">Pass</option>
+                <option value="fail">Fail</option>
+                <option value="unsure">Unsure</option>
+              </select>
+            </label>
+            <label>
+              Story
+              <select id="storyVerdict">
+                <option value="">Unset</option>
+                <option value="pass">Pass</option>
+                <option value="fail">Fail</option>
+                <option value="unsure">Unsure</option>
+              </select>
+            </label>
+          </div>
+          <textarea id="manualNotes" rows="4" placeholder="Notes from the eye test"></textarea>
+        </section>
+      </aside>
+    </main>
+    <script type="module" src="/shooting.js"></script>
+  </body>
+</html>

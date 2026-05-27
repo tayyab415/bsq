@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Player Shooting Comparison</title>
+    <style>
+      :root {
+        --red: #c4050e;
+        --dark-red: #900000;
+        --ink: #171717;
+        --muted: #666666;
+        --soft: #f4f4f4;
+        --line: #d9d9d9;
+        --paper: #ffffff;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: #101214;
+        font-family: "Google Sans", Arial, Helvetica, sans-serif;
+        color: var(--ink);
+      }
+
+      .slide {
+        width: 1600px;
+        height: 900px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        background: var(--paper);
+      }
+
+      .title {
+        position: absolute;
+        left: 72px;
+        top: 44px;
+        width: 1030px;
+        font-size: 43px;
+        line-height: 1.04;
+        font-weight: 850;
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        position: absolute;
+        left: 72px;
+        top: 105px;
+        font-size: 17px;
+        color: var(--muted);
+      }
+
+      .slash {
+        position: absolute;
+        left: 72px;
+        top: 144px;
+        width: 44px;
+        height: 4px;
+        background: var(--red);
+      }
+
+      .left {
+        position: absolute;
+        left: 72px;
+        top: 205px;
+        width: 795px;
+      }
+
+      .headers {
+        display: grid;
+        grid-template-columns: 245px 72px 92px 92px 138px 105px;
+        gap: 10px;
+        padding: 0 18px 10px 18px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 850;
+        text-transform: uppercase;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 245px 72px 92px 92px 138px 105px;
+        gap: 10px;
+        align-items: center;
+        min-height: 82px;
+        padding: 14px 18px;
+        border: 1px solid #dddddd;
+        margin-bottom: 12px;
+        background: #ffffff;
+      }
+
+      .row:nth-child(odd) { background: #fafafa; }
+
+      .player {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .rank {
+        font-size: 30px;
+        font-weight: 900;
+        color: var(--ink);
+      }
+
+      .row.feature .rank { color: var(--red); }
+
+      .name {
+        font-size: 22px;
+        line-height: 1.1;
+        font-weight: 850;
+      }
+
+      .team {
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .num {
+        font-size: 23px;
+        font-weight: 850;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .small {
+        font-size: 13px;
+        color: var(--muted);
+        font-weight: 750;
+      }
+
+      .bar {
+        height: 10px;
+        background: #e7e7e7;
+        position: relative;
+      }
+
+      .bar span {
+        display: block;
+        height: 100%;
+        background: var(--red);
+      }
+
+      .bar.black span { background: var(--ink); }
+
+      .bar-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .bar-label strong {
+        min-width: 35px;
+        font-size: 18px;
+        font-weight: 850;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .scatter-wrap {
+        position: absolute;
+        left: 915px;
+        top: 196px;
+        width: 595px;
+        height: 500px;
+      }
+
+      .scatter-title {
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 22px;
+        font-weight: 850;
+      }
+
+      .scatter-note {
+        position: absolute;
+        left: 0;
+        top: 34px;
+        width: 480px;
+        font-size: 13px;
+        line-height: 1.32;
+        color: var(--muted);
+      }
+
+      svg {
+        position: absolute;
+        left: 0;
+        top: 80px;
+        width: 590px;
+        height: 390px;
+        overflow: visible;
+      }
+
+      .axis-label {
+        font-size: 12px;
+        font-weight: 800;
+        fill: var(--ink);
+      }
+
+      .tick {
+        font-size: 11px;
+        fill: var(--muted);
+      }
+
+      .grid {
+        stroke: #ececec;
+        stroke-width: 1;
+      }
+
+      .axis {
+        stroke: var(--line);
+        stroke-width: 1.2;
+      }
+
+      .badge-backplate {
+        fill: #ffffff;
+        stroke: #d9d9d9;
+        stroke-width: 1.1;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.16));
+      }
+
+      .badge-backplate.selected {
+        stroke: var(--red);
+        stroke-width: 2.2;
+      }
+
+      .club-badge {
+        opacity: 0.78;
+      }
+
+      .club-badge.selected {
+        opacity: 1;
+      }
+
+      .callout {
+        position: absolute;
+        left: 935px;
+        top: 714px;
+        width: 410px;
+        font-size: 15px;
+        line-height: 1.35;
+      }
+
+      .callout strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 19px;
+      }
+
+      .right-red {
+        position: absolute;
+        right: 72px;
+        bottom: 56px;
+        width: 64px;
+        height: 24px;
+        background: var(--red);
+        transform: skewX(-14deg);
+      }
+
+      .bottom {
+        position: absolute;
+        left: 72px;
+        bottom: 48px;
+        width: 780px;
+        font-size: 16px;
+        line-height: 1.35;
+        font-weight: 850;
+      }
+
+      .legend {
+        position: absolute;
+        right: 90px;
+        top: 126px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font-size: 12px;
+        font-weight: 800;
+        color: var(--muted);
+      }
+
+      .legend span::before {
+        content: "";
+        display: inline-block;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        margin-right: 7px;
+        background: white;
+        border: 1px solid #d9d9d9;
+        box-shadow: 0 1px 2px rgba(0,0,0,.14);
+        vertical-align: -2px;
+      }
+
+      .legend span:last-child::before {
+        border-color: var(--red);
+        box-shadow: 0 0 0 2px rgba(196,5,14,.14);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="slide">
+      <div class="title">Same Finishers, Different Execution Signatures</div>
+      <div class="subtitle">Player profiles separate chance volume from repeated strike quality.</div>
+      <div class="slash"></div>
+
+      <div class="legend">
+        <span>all players</span>
+        <span>case studies</span>
+      </div>
+
+      <section class="left">
+        <div class="headers">
+          <div>Player</div>
+          <div>Shots</div>
+          <div>G-xG</div>
+          <div>BSQ</div>
+          <div>Finishing execution</div>
+          <div>Strike</div>
+        </div>
+
+        <div class="row feature">
+          <div class="player">
+            <div class="rank">01</div>
+            <div><div class="name">Harry Kane</div><div class="team">FC Bayern München</div></div>
+          </div>
+          <div><div class="num">6</div><div class="small">shots</div></div>
+          <div><div class="num">+2.3</div><div class="small">3G / 0.7xG</div></div>
+          <div><div class="num">37</div><div class="small">avg</div></div>
+          <div class="bar-label"><div class="bar" style="width: 86px"><span style="width:39%"></span></div><strong>39</strong></div>
+          <div class="bar-label"><div class="bar black" style="width: 62px"><span style="width:70%"></span></div><strong>70</strong></div>
+        </div>
+
+        <div class="row">
+          <div class="player">
+            <div class="rank">02</div>
+            <div><div class="name">Luis Díaz</div><div class="team">FC Bayern München</div></div>
+          </div>
+          <div><div class="num">9</div><div class="small">shots</div></div>
+          <div><div class="num">+2.1</div><div class="small">4G / 1.9xG</div></div>
+          <div><div class="num">54</div><div class="small">avg</div></div>
+          <div class="bar-label"><div class="bar" style="width: 86px"><span style="width:45%"></span></div><strong>45</strong></div>
+          <div class="bar-label"><div class="bar black" style="width: 62px"><span style="width:67%"></span></div><strong>67</strong></div>
+        </div>
+
+        <div class="row">
+          <div class="player">
+            <div class="rank">03</div>
+            <div><div class="name">Serge Gnabry</div><div class="team">FC Bayern München</div></div>
+          </div>
+          <div><div class="num">7</div><div class="small">shots</div></div>
+          <div><div class="num">+0.5</div><div class="small">1G / 0.5xG</div></div>
+          <div><div class="num">64</div><div class="small">avg</div></div>
+          <div class="bar-label"><div class="bar" style="width: 86px"><span style="width:50%"></span></div><strong>50</strong></div>
+          <div class="bar-label"><div class="bar black" style="width: 62px"><span style="width:70%"></span></div><strong>70</strong></div>
+        </div>
+
+        <div class="row">
+          <div class="player">
+            <div class="rank">04</div>
+            <div><div class="name">Michael Olise</div><div class="team">FC Bayern München</div></div>
+          </div>
+          <div><div class="num">8</div><div class="small">shots</div></div>
+          <div><div class="num">-0.5</div><div class="small">0G / 0.5xG</div></div>
+          <div><div class="num">77</div><div class="small">avg</div></div>
+          <div class="bar-label"><div class="bar" style="width: 86px"><span style="width:57%"></span></div><strong>57</strong></div>
+          <div class="bar-label"><div class="bar black" style="width: 62px"><span style="width:72%"></span></div><strong>72</strong></div>
+        </div>
+      </section>
+
+      <section class="scatter-wrap">
+        <div class="scatter-title">Execution does not tell the whole story alone</div>
+        <div class="scatter-note">
+          The player layer checks whether strong release mechanics line up with actual xG overperformance.
+        </div>
+        <svg id="scatter" viewBox="0 0 590 390" aria-label="Finishing execution versus goals minus xG scatter">
+          <g id="plot"></g>
+        </svg>
+      </section>
+
+      <section class="callout">
+        <strong>How to read this</strong>
+        Moving right means the player’s shots carry stronger finishing-execution signals. Moving up means the player scored more than xG expected in this sample.
+      </section>
+
+      <div class="bottom">
+        Conclusion: player profiles tell us whether finishing value is coming from the chances a player receives, or from the execution they repeatedly add at contact.
+      </div>
+      <div class="right-red"></div>
+    </main>
+
+    <script>
+      const logoRoot = "../../../../logos";
+      const logos = {
+        Bayern: `${logoRoot}/DFL-CLU-00000G_Bayern.svg`,
+        Stuttgart: `${logoRoot}/DFL-CLU-00000D_Stuttgart.svg`,
+        Union: `${logoRoot}/DFL-CLU-00000V_Union_Berlin.svg`,
+        Frankfurt: `${logoRoot}/DFL-CLU-00000F_Frankfurt.svg`,
+        Dortmund: `${logoRoot}/DFL-CLU-000007_Dortmund.svg`,
+        Hamburg: `${logoRoot}/DFL-CLU-00000C_Hamburg.svg`,
+      };
+
+      const players = [
+        { name: "Luis Díaz", team: "Bayern", x: 44.9, y: 2.06, selected: true, dx: 12, dy: -8 },
+        { name: "Michael Olise", team: "Bayern", x: 56.5, y: -0.49, selected: true, dx: 12, dy: 16 },
+        { name: "Serge Gnabry", team: "Bayern", x: 49.6, y: 0.45, selected: true, dx: 12, dy: -10 },
+        { name: "Harry Kane", team: "Bayern", x: 38.6, y: 2.31, selected: true, dx: 12, dy: -10 },
+        { name: "D. Undav", team: "Stuttgart", x: 64.5, y: 2.67, dx: 10, dy: -10 },
+        { name: "Oliver Burke", team: "Union", x: 58.7, y: 1.39, dx: 10, dy: -10 },
+        { name: "Can Uzun", team: "Frankfurt", x: 45.6, y: 0.69 },
+        { name: "I. Ansah", team: "Union", x: 57.8, y: 0.86 },
+        { name: "M. Beier", team: "Dortmund", x: 48.6, y: -0.76, weak: true },
+        { name: "R. Doan", team: "Frankfurt", x: 27.7, y: -0.48, weak: true },
+        { name: "W. Mikelbrencis", team: "Hamburg", x: 63.8, y: -0.16 },
+        { name: "Joshua Kimmich", team: "Bayern", x: 61.9, y: -0.10 },
+        { name: "L. Karl", team: "Bayern", x: 46.2, y: -0.10 },
+        { name: "Serhou Guirassy", team: "Dortmund", x: 78.6, y: -0.10 },
+        { name: "Jonathan Burkardt", team: "Frankfurt", x: 52.1, y: 0.18 },
+        { name: "Karim Adeyemi", team: "Dortmund", x: 50.6, y: 0.27 },
+        { name: "N. Brown", team: "Frankfurt", x: 64.4, y: 0.92 },
+      ];
+
+      const svg = document.getElementById("plot");
+      const W = 590, H = 390;
+      const margin = { left: 58, right: 28, top: 18, bottom: 54 };
+      const innerW = W - margin.left - margin.right;
+      const innerH = H - margin.top - margin.bottom;
+      const xMin = 25, xMax = 82;
+      const yMin = -1.0, yMax = 3.0;
+
+      const sx = (x) => margin.left + ((x - xMin) / (xMax - xMin)) * innerW;
+      const sy = (y) => margin.top + (1 - (y - yMin) / (yMax - yMin)) * innerH;
+
+      function el(name, attrs = {}, text = "") {
+        const node = document.createElementNS("http://www.w3.org/2000/svg", name);
+        for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+        if (text) node.textContent = text;
+        svg.appendChild(node);
+        return node;
+      }
+
+      for (const y of [-1, 0, 1, 2, 3]) {
+        el("line", { x1: margin.left, y1: sy(y), x2: W - margin.right, y2: sy(y), class: "grid" });
+        el("text", { x: margin.left - 12, y: sy(y) + 4, "text-anchor": "end", class: "tick" }, String(y));
+      }
+      for (const x of [30, 45, 60, 75]) {
+        el("line", { x1: sx(x), y1: margin.top, x2: sx(x), y2: H - margin.bottom, class: "grid" });
+        el("text", { x: sx(x), y: H - 24, "text-anchor": "middle", class: "tick" }, String(x));
+      }
+      el("line", { x1: margin.left, y1: H - margin.bottom, x2: W - margin.right, y2: H - margin.bottom, class: "axis" });
+      el("line", { x1: margin.left, y1: margin.top, x2: margin.left, y2: H - margin.bottom, class: "axis" });
+      el("line", { x1: margin.left, y1: sy(0), x2: W - margin.right, y2: sy(0), stroke: "#c4050e", "stroke-width": 1.4, "stroke-opacity": .45 });
+
+      el("text", { x: margin.left + innerW / 2, y: H - 4, "text-anchor": "middle", class: "axis-label" }, "Finishing Execution Index");
+      const yLabel = el("text", { x: 15, y: margin.top + innerH / 2, "text-anchor": "middle", class: "axis-label", transform: `rotate(-90 15 ${margin.top + innerH / 2})` }, "Goals minus xG");
+
+      function badgePoint(p) {
+        const x = sx(p.x);
+        const y = sy(p.y);
+        const size = p.selected ? 28 : 22;
+        const r = size / 2 + (p.selected ? 3 : 2);
+        el("circle", {
+          cx: x,
+          cy: y,
+          r,
+          class: `badge-backplate ${p.selected ? "selected" : ""}`,
+        });
+        el("image", {
+          href: logos[p.team],
+          x: x - size / 2,
+          y: y - size / 2,
+          width: size,
+          height: size,
+          preserveAspectRatio: "xMidYMid meet",
+          class: `club-badge ${p.selected ? "selected" : ""}`,
+        });
+      }
+
+      // Draw non-selected points first, selected case studies on top.
+      for (const p of players.filter((p) => !p.selected)) badgePoint(p);
+      for (const p of players.filter((p) => p.selected)) badgePoint(p);
+
+      for (const p of players) {
+        if (p.selected || p.name === "D. Undav" || p.name === "Oliver Burke") {
+          el("text", {
+            x: sx(p.x) + (p.dx ?? 10),
+            y: sy(p.y) + (p.dy ?? -8),
+            class: "tick",
+            "font-weight": p.selected ? "850" : "700",
+            fill: p.selected ? "#171717" : "#666666",
+          }, p.name);
+        }
+      }
+
+      el("text", { x: sx(76), y: sy(2.72), class: "tick", "font-weight": "850", fill: "#c4050e" }, "high execution + overperformance");
+      el("text", { x: sx(27), y: sy(-0.72), class: "tick", "font-weight": "850", fill: "#171717" }, "weak return vs xG");
+    </script>
+  </body>
+</html>

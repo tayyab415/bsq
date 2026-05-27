@@ -1,0 +1,53 @@
+# Python
+.venv/
+.venv-*/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Hackathon data — must live OUTSIDE repo (see docs/DATA_POLICY.md)
+data-small/
+data/
+Match_Data/
+**/Match_Data/
+*_metadata.json
+**/kpi_data_*.xml
+**/Events_*.xml
+**/MatchInformations_*.xml
+**/Positions_*.xml
+
+# Metrics / derived (reproduced locally)
+metrics-calculation/outputs/
+derived/
+*.parquet
+!metrics-calculation/fixtures/**/*
+# Allow committed reference tables (derived BSQ scores, not raw XML/parquet)
+!metrics-calculation/reference_outputs/
+!metrics-calculation/reference_outputs/**
+# Block accidental full outputs elsewhere
+metrics-calculation/outputs/**
+**/tracking_samples.csv
+
+# AWS / secrets
+aws-hackathon.env
+.env
+*.pem
+
+# Node / Remotion
+shooting-videos/remotion/node_modules/
+shooting-videos/remotion/out/
+shooting-videos/outputs/
+*.mp4
+!shooting-videos/outputs/.gitkeep
+
+# OS / IDE
+.codex/
+.DS_Store
+.idea/
+.vscode/
+
+# Logs
+*.log

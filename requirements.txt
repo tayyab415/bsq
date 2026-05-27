@@ -1,0 +1,9 @@
+# Install editable package + metric extras:
+#   pip install -e ".[metrics]"
+#
+# Or bare pins for CI:
+pyarrow>=14,<22
+s3fs>=2024.6.0,<2025.4
+fsspec>=2024.6.0,<2025.4
+boto3>=1.34
+pandas>=2.1

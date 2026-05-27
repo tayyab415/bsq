@@ -1,0 +1,41 @@
+match_folder,player_id,team_id,team_name,shirt_number,parquet_team,short_name,playing_position,is_goalkeeper
+Bayern_Hamburg,DFL-OBJ-0000I4,DFL-CLU-00000G,FC Bayern München,1,1,Manuel Neuer,TW,True
+Bayern_Hamburg,DFL-OBJ-0027KL,DFL-CLU-00000G,FC Bayern München,2,1,Dayot Upamecano,IVR,False
+Bayern_Hamburg,DFL-OBJ-0001UP,DFL-CLU-00000G,FC Bayern München,4,1,Jonathan Tah,IVL,False
+Bayern_Hamburg,DFL-OBJ-0002F5,DFL-CLU-00000G,FC Bayern München,6,1,Joshua Kimmich,DMR,False
+Bayern_Hamburg,DFL-OBJ-0027G6,DFL-CLU-00000G,FC Bayern München,7,1,Serge Gnabry,ZO,False
+Bayern_Hamburg,DFL-OBJ-J00ZZ3,DFL-CLU-00000G,FC Bayern München,9,1,Harry Kane,STZ,False
+Bayern_Hamburg,DFL-OBJ-J01DA7,DFL-CLU-00000G,FC Bayern München,14,1,Luis Díaz,OLM,False
+Bayern_Hamburg,DFL-OBJ-J01R3R,DFL-CLU-00000G,FC Bayern München,17,1,Michael Olise,ORM,False
+Bayern_Hamburg,DFL-OBJ-0027T1,DFL-CLU-00000G,FC Bayern München,27,1,K. Laimer,RV,False
+Bayern_Hamburg,DFL-OBJ-002GIC,DFL-CLU-00000G,FC Bayern München,44,1,J. Stanišić,LV,False
+Bayern_Hamburg,DFL-OBJ-J01KAH,DFL-CLU-00000G,FC Bayern München,45,1,A. Pavlović,DML,False
+Bayern_Hamburg,DFL-OBJ-J01AE6,DFL-CLU-00000G,FC Bayern München,3,1,M. Kim,,False
+Bayern_Hamburg,DFL-OBJ-000191,DFL-CLU-00000G,FC Bayern München,8,1,Leon Goretzka,,False
+Bayern_Hamburg,DFL-OBJ-0000LT,DFL-CLU-00000G,FC Bayern München,26,1,S. Ulreich,,False
+Bayern_Hamburg,DFL-OBJ-J01JM5,DFL-CLU-00000G,FC Bayern München,40,1,Jonas Urbig,,False
+Bayern_Hamburg,DFL-OBJ-J01KLU,DFL-CLU-00000G,FC Bayern München,11,1,N. Jackson,STZ,False
+Bayern_Hamburg,DFL-OBJ-J01K2F,DFL-CLU-00000G,FC Bayern München,20,1,T. Bischof,LV,False
+Bayern_Hamburg,DFL-OBJ-0027AH,DFL-CLU-00000G,FC Bayern München,22,1,Raphaël Guerreiro,LV,False
+Bayern_Hamburg,DFL-OBJ-J01DZW,DFL-CLU-00000G,FC Bayern München,23,1,S. Boey,RV,False
+Bayern_Hamburg,DFL-OBJ-J01UD5,DFL-CLU-00000G,FC Bayern München,42,1,L. Karl,ORM,False
+Bayern_Hamburg,DFL-OBJ-0001EH,DFL-CLU-00000C,Hamburger SV,1,0,D. Heuer Fernandes,TW,True
+Bayern_Hamburg,DFL-OBJ-J01N5U,DFL-CLU-00000C,Hamburger SV,2,0,W. Mikelbrencis,DRM,False
+Bayern_Hamburg,DFL-OBJ-002G8B,DFL-CLU-00000C,Hamburger SV,11,0,R. Königsdörffer,STZ,False
+Bayern_Hamburg,DFL-OBJ-J01G5F,DFL-CLU-00000C,Hamburger SV,17,0,W. Omari,IVR,False
+Bayern_Hamburg,DFL-OBJ-J01FRO,DFL-CLU-00000C,Hamburger SV,20,0,Fábio Vieira,RA,False
+Bayern_Hamburg,DFL-OBJ-J01IZ9,DFL-CLU-00000C,Hamburger SV,21,0,N. Remberg,DMR,False
+Bayern_Hamburg,DFL-OBJ-J02321,DFL-CLU-00000C,Hamburger SV,22,0,A. Soumahoro,IVL,False
+Bayern_Hamburg,DFL-OBJ-J01H5G,DFL-CLU-00000C,Hamburger SV,24,0,Nicolas Capaldo,DML,False
+Bayern_Hamburg,DFL-OBJ-J01HP7,DFL-CLU-00000C,Hamburger SV,28,0,Miro Muheim,DLM,False
+Bayern_Hamburg,DFL-OBJ-J020IH,DFL-CLU-00000C,Hamburger SV,44,0,L. Vušković,IVZ,False
+Bayern_Hamburg,DFL-OBJ-J02322,DFL-CLU-00000C,Hamburger SV,38,0,A. Rössing-Lelesiit,LA,False
+Bayern_Hamburg,DFL-OBJ-002FW7,DFL-CLU-00000C,Hamburger SV,3,0,N. Katterbach,,False
+Bayern_Hamburg,DFL-OBJ-J01A3I,DFL-CLU-00000C,Hamburger SV,6,0,Albert Sambi Lokonga,,False
+Bayern_Hamburg,DFL-OBJ-J019VH,DFL-CLU-00000C,Hamburger SV,26,0,D. Peretz,,False
+Bayern_Hamburg,DFL-OBJ-J02270,DFL-CLU-00000C,Hamburger SV,29,0,E. Sahiti,,False
+Bayern_Hamburg,DFL-OBJ-J01OYX,DFL-CLU-00000C,Hamburger SV,8,0,D. Elfadli,IVL,False
+Bayern_Hamburg,DFL-OBJ-0027HO,DFL-CLU-00000C,Hamburger SV,9,0,Robert Glatzel,STZ,False
+Bayern_Hamburg,DFL-OBJ-J01W6J,DFL-CLU-00000C,Hamburger SV,14,0,R. Philippe,LA,False
+Bayern_Hamburg,DFL-OBJ-0001QT,DFL-CLU-00000C,Hamburger SV,23,0,J. Meffert,DMR,False
+Bayern_Hamburg,DFL-OBJ-J021LJ,DFL-CLU-00000C,Hamburger SV,45,0,Fabio Baldé,RA,False

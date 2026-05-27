@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bayern Hamburg Skeleton Visualizer</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="viewport-panel" aria-label="3D match view">
+        <div id="scene" class="scene"></div>
+        <canvas id="miniPitch" class="mini-pitch" width="420" height="272"></canvas>
+        <div id="status" class="status-line">Loading match</div>
+      </section>
+
+      <aside class="side-panel">
+        <header class="match-header">
+          <div>
+            <p id="matchName" class="eyebrow">Bayern Hamburg</p>
+            <h1>3D Skeleton Verification</h1>
+          </div>
+          <div id="frameReadout" class="frame-readout">Frame -</div>
+        </header>
+
+        <section class="control-section">
+          <a class="tool-link" href="/shooting.html">Open Shooting Metric Review</a>
+        </section>
+
+        <section class="control-section">
+          <label for="eventIdInput">Event ID</label>
+          <div class="control-row event-jump-row">
+            <input id="eventIdInput" class="number-input" type="text" placeholder="18902400000023" />
+            <button id="eventJumpButton" type="button">Jump Event</button>
+          </div>
+        </section>
+
+        <section class="control-section">
+          <label for="frameSlider">Frame</label>
+          <input id="frameSlider" type="range" min="0" max="100" value="0" />
+          <div class="control-row">
+            <input id="frameInput" class="number-input" type="number" value="0" />
+            <button id="jumpButton" type="button">Jump</button>
+          </div>
+          <div class="control-row">
+            <button id="playButton" type="button">Play</button>
+            <button id="backButton" type="button">-1s</button>
+            <button id="forwardButton" type="button">+1s</button>
+            <select id="speedSelect" aria-label="Playback speed">
+              <option value="1">1x</option>
+              <option value="2">2x</option>
+              <option value="4">4x</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="control-section toggles">
+          <label><input id="labelsToggle" type="checkbox" checked /> Labels</label>
+          <label><input id="eventsToggle" type="checkbox" checked /> Events</label>
+          <label><input id="axesToggle" type="checkbox" checked /> Axes</label>
+        </section>
+
+        <section class="control-section">
+          <h2>Events</h2>
+          <div id="eventList" class="event-list"></div>
+        </section>
+
+        <section class="control-section inspector-section">
+          <h2>Inspector</h2>
+          <div id="inspector" class="inspector"></div>
+        </section>
+      </aside>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

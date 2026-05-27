@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Body Shape At Release</title>
+    <style>
+      :root {
+        --red: #c4050e;
+        --ink: #171717;
+        --muted: #666666;
+        --grid: #d9d9d9;
+        --soft: #f4f4f4;
+        --paper: #ffffff;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: #101214;
+        font-family: "Google Sans", Arial, Helvetica, sans-serif;
+        color: var(--ink);
+      }
+
+      .slide {
+        width: 1600px;
+        height: 900px;
+        background: var(--paper);
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .title {
+        position: absolute;
+        left: 72px;
+        top: 44px;
+        font-size: 42px;
+        line-height: 1.04;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        position: absolute;
+        left: 72px;
+        top: 104px;
+        font-size: 17px;
+        color: var(--muted);
+      }
+
+      .slash {
+        position: absolute;
+        left: 72px;
+        top: 143px;
+        width: 42px;
+        height: 4px;
+        background: var(--red);
+      }
+
+      .scene-shell {
+        position: absolute;
+        left: 88px;
+        top: 200px;
+        width: 620px;
+        height: 470px;
+        background: #f7f7f7;
+        border: 1px solid #ececec;
+        overflow: hidden;
+      }
+
+      #scene {
+        position: absolute;
+        inset: 0;
+      }
+
+      .scene-label {
+        position: absolute;
+        left: 28px;
+        top: 26px;
+        z-index: 2;
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--ink);
+        text-transform: uppercase;
+      }
+
+      .scene-sub {
+        position: absolute;
+        left: 28px;
+        top: 54px;
+        z-index: 2;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .caption-title {
+        position: absolute;
+        left: 88px;
+        top: 690px;
+        font-size: 25px;
+        font-weight: 800;
+      }
+
+      .caption {
+        position: absolute;
+        left: 88px;
+        top: 728px;
+        width: 620px;
+        font-size: 15px;
+        line-height: 1.35;
+      }
+
+      .metrics {
+        position: absolute;
+        left: 790px;
+        top: 218px;
+        width: 390px;
+      }
+
+      .metrics h2 {
+        margin: 0 0 38px;
+        font-size: 20px;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .bar-row {
+        margin: 0 0 48px;
+      }
+
+      .bar-row .label {
+        font-size: 14px;
+        font-weight: 800;
+        margin-bottom: 14px;
+      }
+
+      .bar-wrap {
+        display: grid;
+        grid-template-columns: 1fr 48px;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .track {
+        height: 17px;
+        background: #e8e8e8;
+        position: relative;
+      }
+
+      .fill {
+        height: 100%;
+        background: var(--red);
+      }
+
+      .fill.black { background: var(--ink); }
+
+      .value {
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .phase {
+        position: absolute;
+        right: 102px;
+        top: 216px;
+        width: 245px;
+        height: 490px;
+      }
+
+      .phase-line {
+        position: absolute;
+        left: 28px;
+        top: 0;
+        width: 3px;
+        height: 470px;
+        background: var(--red);
+      }
+
+      .phase-step {
+        position: absolute;
+        left: 0;
+        display: grid;
+        grid-template-columns: 62px 1fr;
+        align-items: center;
+      }
+
+      .dot {
+        width: 31px;
+        height: 31px;
+        border-radius: 50%;
+        border: 3px solid var(--red);
+        background: white;
+        margin-left: 14px;
+        z-index: 2;
+      }
+
+      .phase-step.active .dot {
+        background: var(--red);
+      }
+
+      .phase-title {
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .phase-step.active .phase-title {
+        color: var(--red);
+      }
+
+      .phase-copy {
+        margin-top: 10px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .inference {
+        position: absolute;
+        left: 72px;
+        right: 72px;
+        bottom: 42px;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .b-red {
+        position: absolute;
+        right: 72px;
+        bottom: 58px;
+        width: 62px;
+        height: 22px;
+        background: var(--red);
+        transform: skewX(-14deg);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="slide">
+      <div class="title">What The Player Does At Contact</div>
+      <div class="subtitle">Serge Gnabry · FC Bayern München · xG 0.031 · BSQ 0.89 · low chance, high execution</div>
+      <div class="slash"></div>
+
+      <section class="scene-shell">
+        <div id="scene"></div>
+        <div class="scene-label">Visualizer Release View</div>
+        <div class="scene-sub">skeletal points at contact</div>
+      </section>
+
+      <div class="caption-title">STRIKE FRAME</div>
+      <div class="caption">
+        The chance is difficult by xG, so the quality has to come from body shape,
+        contact timing, release speed, and placement.
+      </div>
+
+      <section class="metrics">
+        <h2>RELEASE MECHANICS</h2>
+        <div class="bar-row">
+          <div class="label">Contact quality</div>
+          <div class="bar-wrap"><div class="track"><div class="fill" style="width: 88%"></div></div><div class="value">88</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="label">Foot-path stability</div>
+          <div class="bar-wrap"><div class="track"><div class="fill" style="width: 100%"></div></div><div class="value">100</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="label">Release speed</div>
+          <div class="bar-wrap"><div class="track"><div class="fill" style="width: 100%"></div></div><div class="value">100</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="label">Placement</div>
+          <div class="bar-wrap"><div class="track"><div class="fill black" style="width: 97%"></div></div><div class="value">97</div></div>
+        </div>
+      </section>
+
+      <section class="phase">
+        <div class="phase-line"></div>
+        <div class="phase-step" style="top: 0">
+          <div class="dot"></div>
+          <div><div class="phase-title">APPROACH</div><div class="phase-copy">setup · 76</div></div>
+        </div>
+        <div class="phase-step" style="top: 150px">
+          <div class="dot"></div>
+          <div><div class="phase-title">COIL</div><div class="phase-copy">load · 82</div></div>
+        </div>
+        <div class="phase-step active" style="top: 300px">
+          <div class="dot"></div>
+          <div><div class="phase-title">CONTACT</div><div class="phase-copy">release point · 82</div></div>
+        </div>
+        <div class="phase-step" style="top: 450px">
+          <div class="dot"></div>
+          <div><div class="phase-title">OUTPUT</div><div class="phase-copy">ball flight · 98</div></div>
+        </div>
+      </section>
+
+      <div class="inference">
+        Inference: difficult chances do not become high-quality attempts by location alone; the separator is the body-and-ball execution at contact.
+      </div>
+      <div class="b-red"></div>
+    </main>
+
+    <script type="module">
+      import * as THREE from "../../../visualizer/web/vendor/three.module.js";
+
+      const container = document.getElementById("scene");
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xf7f7f7);
+
+      const camera = new THREE.PerspectiveCamera(34, container.clientWidth / container.clientHeight, 0.1, 100);
+      camera.position.set(2.4, 1.75, 4.6);
+      camera.lookAt(0.18, 0.66, 0.05);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.shadowMap.enabled = true;
+      container.appendChild(renderer.domElement);
+
+      scene.add(new THREE.HemisphereLight(0xffffff, 0xd9d9d9, 2.1));
+      const key = new THREE.DirectionalLight(0xffffff, 2.4);
+      key.position.set(3.5, 5, 4);
+      scene.add(key);
+
+      const red = new THREE.Color(0xc4050e);
+      const ink = new THREE.Color(0x171717);
+      const gray = new THREE.Color(0xd9d9d9);
+      const blue = new THREE.Color(0x6bb7ff);
+      const orange = new THREE.Color(0xff9b42);
+      const center = new THREE.Color(0xc4050e);
+
+      const materials = {
+        left: new THREE.MeshStandardMaterial({ color: blue, roughness: 0.44 }),
+        right: new THREE.MeshStandardMaterial({ color: orange, roughness: 0.44 }),
+        center: new THREE.MeshStandardMaterial({ color: center, roughness: 0.38 }),
+        ball: new THREE.MeshStandardMaterial({ color: 0xf2bf5e, roughness: 0.35 }),
+        redLine: new THREE.LineBasicMaterial({ color: red, transparent: true, opacity: 0.95 }),
+        guide: new THREE.LineBasicMaterial({ color: 0x999999, transparent: true, opacity: 0.42 }),
+        floor: new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.95 }),
+      };
+
+      const jointGeometry = new THREE.SphereGeometry(0.045, 16, 16);
+      const ballGeometry = new THREE.SphereGeometry(0.082, 22, 22);
+
+      const parts = {
+        pelvis: v(0.00, 0.64, 0.00),
+        neck: v(0.30, 1.11, 0.03),
+        nose: v(0.48, 1.24, 0.05),
+        left_shoulder: v(0.12, 1.07, -0.05),
+        right_shoulder: v(0.52, 1.06, 0.10),
+        left_elbow: v(-0.08, 0.94, -0.03),
+        left_wrist: v(-0.34, 0.84, 0.00),
+        right_elbow: v(0.73, 0.93, 0.13),
+        right_wrist: v(0.92, 0.80, 0.14),
+        left_hip: v(-0.15, 0.59, -0.02),
+        right_hip: v(0.16, 0.60, 0.03),
+        left_knee: v(-0.34, 0.32, -0.04),
+        left_ankle: v(-0.42, 0.07, -0.03),
+        left_toe: v(-0.61, 0.03, 0.04),
+        right_knee: v(0.45, 0.35, 0.05),
+        right_ankle: v(0.86, 0.13, 0.07),
+        right_toe: v(1.08, 0.09, 0.08),
+      };
+      const ball = v(1.23, 0.11, 0.09);
+
+      const floor = new THREE.Mesh(new THREE.PlaneGeometry(4.8, 2.8), materials.floor);
+      floor.rotation.x = -Math.PI / 2;
+      floor.position.y = -0.01;
+      scene.add(floor);
+
+      addReviewBox();
+      drawSkeleton();
+      drawReleaseTrail();
+      drawProbeLines();
+
+      renderer.render(scene, camera);
+      window.addEventListener("resize", () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.render(scene, camera);
+      });
+
+      function v(x, y, z) {
+        return new THREE.Vector3(x, y, z);
+      }
+
+      function drawSkeleton() {
+        const connections = [
+          ["nose", "neck"],
+          ["neck", "left_shoulder"], ["neck", "right_shoulder"],
+          ["left_shoulder", "left_elbow"], ["left_elbow", "left_wrist"],
+          ["right_shoulder", "right_elbow"], ["right_elbow", "right_wrist"],
+          ["neck", "pelvis"],
+          ["left_hip", "pelvis"], ["right_hip", "pelvis"],
+          ["left_hip", "left_knee"], ["left_knee", "left_ankle"], ["left_ankle", "left_toe"],
+          ["right_hip", "right_knee"], ["right_knee", "right_ankle"], ["right_ankle", "right_toe"],
+        ];
+
+        for (const [a, b] of connections) {
+          const material = segmentMaterial(a, b);
+          scene.add(cylinderBetween(parts[a], parts[b], material === materials.center ? 0.035 : 0.031, material));
+        }
+
+        for (const [name, point] of Object.entries(parts)) {
+          const joint = new THREE.Mesh(jointGeometry, jointMaterial(name));
+          joint.position.copy(point);
+          scene.add(joint);
+        }
+
+        const ballMesh = new THREE.Mesh(ballGeometry, materials.ball);
+        ballMesh.position.copy(ball);
+        scene.add(ballMesh);
+      }
+
+      function segmentMaterial(a, b) {
+        if (a.startsWith("left_") && b.startsWith("left_")) return materials.left;
+        if (a.startsWith("right_") && b.startsWith("right_")) return materials.right;
+        return materials.center;
+      }
+
+      function jointMaterial(name) {
+        if (name.startsWith("left_")) return materials.left;
+        if (name.startsWith("right_")) return materials.right;
+        return materials.center;
+      }
+
+      function drawReleaseTrail() {
+        const points = [];
+        for (let i = 0; i < 18; i += 1) {
+          const t = i / 17;
+          points.push(v(ball.x - t * 0.58, ball.y + Math.sin(t * Math.PI) * 0.045, ball.z - t * 0.02));
+        }
+        scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), materials.redLine));
+        const arrow = new THREE.Mesh(new THREE.ConeGeometry(0.055, 0.18, 18), new THREE.MeshBasicMaterial({ color: red }));
+        arrow.position.copy(v(ball.x + 0.28, ball.y + 0.012, ball.z + 0.01));
+        arrow.rotation.z = -Math.PI / 2;
+        scene.add(arrow);
+      }
+
+      function drawProbeLines() {
+        addLine(parts.right_toe, ball, 0xffd166, 0.95);
+        addLine(parts.left_shoulder, parts.right_shoulder, 0x7bb8ff, 0.7);
+        addLine(parts.left_hip, parts.right_hip, 0xc4050e, 0.72);
+      }
+
+      function addReviewBox() {
+        const w = 2.65;
+        const h = 1.05;
+        const z = -0.42;
+        const y = 0.78;
+        const points = [
+          v(-0.95, 0.04, z), v(-0.82, y, z), v(-0.82 + w, y, z), v(-0.82 + w, 0.04, z),
+          v(-0.95, 0.04, z)
+        ];
+        scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), materials.guide));
+      }
+
+      function addLine(a, b, color, opacity) {
+        const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity });
+        scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), mat));
+      }
+
+      function cylinderBetween(a, b, radius, material) {
+        const direction = new THREE.Vector3().subVectors(b, a);
+        const length = direction.length();
+        const geometry = new THREE.CylinderGeometry(radius, radius, length, 12);
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.copy(a).add(b).multiplyScalar(0.5);
+        mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.normalize());
+        return mesh;
+      }
+    </script>
+  </body>
+</html>

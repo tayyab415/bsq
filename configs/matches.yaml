@@ -1,0 +1,19 @@
+# Five Bundesliga matches in the hackathon bundle (folder names under data-small/Match_Data/)
+matches:
+  - Bayern_Hamburg
+  - Bayern_Union
+  - Frankfurt_Bayern
+  - Leipzig_Bayern
+  - Bayern_Stuttgart
+
+# Default hero shots for video / visualizer demos (event IDs — adjust after sync)
+demo_shots:
+  - match_folder: Frankfurt_Bayern
+    event_id: "18905200000743"
+    label: bahoya
+  - match_folder: Bayern_Hamburg
+    event_id: "18902400000744"
+    label: gnabry
+  - match_folder: Bayern_Union
+    event_id: "18902400001555"
+    label: goretzka
