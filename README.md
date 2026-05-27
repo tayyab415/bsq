@@ -10,8 +10,33 @@ The submission has three parts:
 
 Public repo: `https://github.com/tayyab415/bsq`
 
+## Output Preview
+
+Representative generated outputs are embedded directly in this README so reviewers can see the BSQ artifacts immediately. These are derived plots and visualizations, not raw tracking feeds.
+
+### BSQ Explanation
+
+![What exactly is BSQ](metrics-calculation/notebooks/figures/what_exactly_is_bsq.png)
+
+### Player Dashboard
+
+![Harry Kane shooting profile](metrics-calculation/notebooks/figures/harry_kane_shooting_profile.png)
+
+### Player Comparison
+
+![Player shooting comparison](metrics-calculation/notebooks/figures/player_shooting_comparison.png)
+
+### 3D Shot Map
+
+![Bayern Hamburg 3D shot map](outputs/shot_map_bayern_hamburg_preview.png)
+
+### Body Shape at Release
+
+![Body shape at release](metrics-calculation/notebooks/figures/08_body_shape_at_release.png)
+
 ## Table of Contents
 
+- [Output Preview](#output-preview)
 - [What BSQ Measures](#what-bsq-measures)
 - [Repository Layout](#repository-layout)
 - [Data Policy](#data-policy)
