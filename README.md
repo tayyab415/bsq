@@ -27,6 +27,7 @@ Public repo: `https://github.com/tayyab415/bsq`
 - [Finishing Execution Index](#finishing-execution-index)
 - [Confidence, Missing Data, and Audit Fields](#confidence-missing-data-and-audit-fields)
 - [Outputs and Validation](#outputs-and-validation)
+- [Output Gallery](#output-gallery)
 - [Visualizer](#visualizer)
 - [Remotion Videos](#remotion-videos)
 - [Hackathon Deliverables](#hackathon-deliverables)
@@ -924,6 +925,70 @@ P1_score ... P6_score
 *_q
 *_band
 ```
+
+## Output Gallery
+
+The repository includes representative generated plots and review artifacts so judges can inspect the output without rerunning AWS extraction first. These images are derived visual outputs, not raw tracking feeds.
+
+### BSQ Method and Body-Strike Explanation
+
+![What exactly is BSQ](metrics-calculation/notebooks/figures/what_exactly_is_bsq.png)
+
+![Body shape at release](metrics-calculation/notebooks/figures/08_body_shape_at_release.png)
+
+Interactive/static companion files:
+
+- `metrics-calculation/notebooks/figures/what_exactly_is_bsq.html`
+- `metrics-calculation/notebooks/figures/body_shape_at_release_visualizer.html`
+- `metrics-calculation/notebooks/figures/08_body_shape_at_release.svg`
+
+### Player and League Dashboards
+
+![Harry Kane shooting profile](metrics-calculation/notebooks/figures/harry_kane_shooting_profile.png)
+
+![Player shooting comparison](metrics-calculation/notebooks/figures/player_shooting_comparison.png)
+
+Notebook-exported profile images:
+
+![Kane profile view 1](metrics-calculation/notebooks/kane2.png)
+
+![Kane profile view 2](metrics-calculation/notebooks/kane5.png)
+
+![Olise profile view 1](metrics-calculation/notebooks/olise2.png)
+
+![Olise profile view 2](metrics-calculation/notebooks/olise3.png)
+
+Additional notebook snapshots:
+
+![Dashboard snapshot g3](metrics-calculation/notebooks/g3.png)
+
+![Dashboard snapshot g4](metrics-calculation/notebooks/g4.png)
+
+Interactive/static companion files:
+
+- `metrics-calculation/notebooks/figures/harry_kane_shooting_profile.html`
+- `metrics-calculation/notebooks/figures/player_shooting_comparison.html`
+
+### 3D Shot Maps
+
+![Bayern Hamburg 3D shot map](outputs/shot_map_bayern_hamburg_preview.png)
+
+![Harry Kane shot map by match](outputs/shot_map_harry_kane_by_match.png)
+
+![Harry Kane shot map by goal](outputs/shot_map_harry_kane_by_goal.png)
+
+![Harry Kane all shots](outputs/shot_map_harry_kane_all.png)
+
+Interactive/static companion files:
+
+- `outputs/shot_map_bayern_hamburg.html`
+- `outputs/shot_map_harry_kane.html`
+
+### Camera Selection Proof
+
+The camera-trial contact sheet documents the view search used to select the final cinematic 3D shot-map camera.
+
+![3D shot-map camera trials](outputs/camera_trials_final2/contact_sheet.png)
 
 ## Visualizer
 
